@@ -1,0 +1,12 @@
+---
+- name: Check uptime of Linux servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Get uptime
+      command: uptime
+      register: uptime_result
+
+    - name: Print uptime
+      debug:
+        msg: "The uptime of the server is {{ uptime_result.stdout }}"
